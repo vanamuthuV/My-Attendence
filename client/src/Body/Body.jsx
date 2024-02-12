@@ -7,6 +7,7 @@ import "./Body.css";
 import userAuth from "../../context/context";
 import { useNavigate, redirect } from "react-router-dom";
 import SearchIcon from "@mui/icons-material/Search";
+import "./Body.css";
 
 const Points = ["Get Student List"];
 
@@ -30,6 +31,7 @@ export const Body = () => {
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
+          padding: 0,
         }}
       >
         {Points.map((point) => {
@@ -41,10 +43,12 @@ export const Body = () => {
                   cursor: "pointer",
                   fontSize: "20px",
                   fontFamily: "Fira Code",
-                  backgroundColor: "gray",
+                  backgroundColor: "#303030",
                   border: "1px solid black",
                   color: "white",
+                  borderRadius: "10px",
                 }}
+                className="lists"
               >
                 See Attendance
               </button>
@@ -69,11 +73,13 @@ export const Body = () => {
                 cursor: "pointer",
                 fontSize: "20px",
                 fontFamily: "Fira Code",
-                backgroundColor: "gray",
+                backgroundColor: "#303030",
                 border: "1px solid black",
                 color: "white",
-                margin: "15px 15px",
+                margin: "15px 0px",
+                borderRadius: "10px",
               }}
+              className="lists"
             >
               Add Student
             </button>
@@ -86,11 +92,13 @@ export const Body = () => {
                 cursor: "pointer",
                 fontSize: "20px",
                 fontFamily: "Fira Code",
-                backgroundColor: "gray",
+                backgroundColor: "#303030",
                 border: "1px solid black",
                 color: "white",
-                margin: "15px 15px",
+                margin: "15px 0px",
+                borderRadius: "10px",
               }}
+              className="lists"
             >
               Take Attendance
             </button>
@@ -103,11 +111,13 @@ export const Body = () => {
                 cursor: "pointer",
                 fontSize: "20px",
                 fontFamily: "Fira Code",
-                backgroundColor: "gray",
+                backgroundColor: "#303030",
                 border: "1px solid black",
                 color: "white",
-                margin: "15px 15px",
+                margin: "15px 0px",
+                borderRadius: "10px",
               }}
+              className="lists"
             >
               Update Student Details
             </button>
@@ -177,15 +187,13 @@ export const Students = () => {
             marginBottom: "50px",
           }}
         >
-          <h1 style={{ fontFamily: "Fira Code", margin: "25px 10px" }}>
-            Student List
-          </h1>
-          <table border={"1px solid gray"}>
+          <h1 className="heads">Student List</h1>
+          <table border={"#303030"} style={{ borderCollapse: "collapse" }}>
             <tr style={{ fontFamily: "Fira Code" }}>
-              <th>Name</th>
-              <th>USN</th>
-              <th>COURSE</th>
-              <th>Status</th>
+              <th className="tex">Name</th>
+              <th className="tex">USN</th>
+              <th className="tex">COURSE</th>
+              <th className="tex">Status</th>
               {Object.keys(user).length > 0 && <th>Delete ?</th>}
             </tr>
             {Data.map((users) => {
@@ -197,9 +205,9 @@ export const Students = () => {
                     cursor: "pointer",
                   }}
                 >
-                  <td style={{ padding: "8px 20px" }}>{users.student_name}</td>
-                  <td style={{ padding: "8px 20px" }}>{users.usn}</td>
-                  <td style={{ padding: "8px 30px" }}>{users.course}</td>
+                  <td className="detail">{users.student_name}</td>
+                  <td className="detail">{users.usn}</td>
+                  <td className="detail">{users.course}</td>
                   <td
                     style={{
                       display: "flex",
@@ -207,18 +215,10 @@ export const Students = () => {
                       alignItems: "center",
                       justifyContent: "center",
                     }}
+                    className="detail"
                   >
                     <Link to={`/Get Student List/${users.student_id}`}>
-                      <button
-                        style={{
-                          padding: "5px 10px",
-                          fontFamily: "Fira Code",
-                          margin: "5px 10px",
-                          cursor: "pointer",
-                        }}
-                      >
-                        Details
-                      </button>
+                      <button className="DetailButton">Details</button>
                     </Link>
                   </td>
                   {Object.keys(user).length > 0 && (
@@ -384,31 +384,32 @@ export const IndiviualClass = () => {
         justifyContent: "center",
       }}
     >
-      <h1 style={{ color: "gray", fontFamily: "Fira Code" }}>
+      <h1 className="Conheads">
         {" "}
         Classes Conducted On {format(Data[0].attendance_time, "yyyy-MM-d")}
       </h1>
-      <table border={"1px solid gray"}>
+      <table
+        style={{ borderCollapse: "collapse" }}
+        border={"1px solid #303030"}
+      >
         {Data.map((subject) => {
           return (
-            <tr>
+            <tr className="att">
               <td
                 style={{
-                  fontFamily: "Fira Code",
-                  padding: "10px 15px",
                   backgroundColor:
                     subject.status == "present" ? "green" : "red",
                 }}
+                className="att"
               >
                 {subject.sunject_name}
               </td>
               <td
                 style={{
-                  fontFamily: "Fira Code",
-                  padding: "10px 15px",
                   backgroundColor:
                     subject.status == "present" ? "green" : "red",
                 }}
+                className="att"
               >
                 {subject.status}
               </td>
@@ -468,19 +469,7 @@ export const Login = () => {
         justifyContent: "center",
       }}
     >
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "center",
-          width: "400px",
-          border: "2px solid black",
-          padding: "25px 15px",
-          margin: "80px 0px",
-          borderRadius: "20px",
-        }}
-      >
+      <div className="loginDiv">
         <h1 style={{ fontFamily: "Fira Code" }}>Login Page</h1>
         <form
           onSubmit={submitHandler}
@@ -492,30 +481,22 @@ export const Login = () => {
           }}
         >
           <input
-            style={{
-              width: "300px",
-              padding: "6px 16px",
-              border: "2px solid black",
-              borderRadius: "10px",
-              fontSize: "16px",
-              margin: "20px 10px",
-            }}
+            className="inL"
+            // style={{
+            //   width: "300px",
+            //   padding: "6px 16px",
+            //   border: "2px solid black",
+            //   borderRadius: "10px",
+            //   fontSize: "16px",
+            //   margin: "20px 10px",
+            // }}
             ref={username}
             type="text"
             placeholder="Username ?"
             required
           />
           <input
-            style={{
-              width: "300px",
-              padding: "6px 16px",
-              border: "2px solid black",
-              borderRadius: "10px",
-              fontSize: "16px",
-              marginTop: "20px",
-              marginRight: "10px",
-              marginLeft: "10px",
-            }}
+            className="inL"
             required
             ref={password}
             type="password"
@@ -524,13 +505,15 @@ export const Login = () => {
           <p
             id="pp"
             style={{
-              color: "gray",
+              color: "#303030",
               fontSize: "12px",
               fontFamily: "Fira Code",
               cursor: "pointer",
             }}
           >
-            Contact the administration for registration
+            <p style={{ textAlign: "center" }}>
+              Contact the administration for registration
+            </p>
           </p>
           <button
             style={{
@@ -557,11 +540,12 @@ const ADDSTUDENT = "/addstudent";
 
 const inputStyle = {
   width: "300px",
-  padding: "6px 16px",
-  border: "2px solid black",
+  padding: "10px 16px",
+  border: "2px solid #303030",
   borderRadius: "10px",
+  fontFamily: "Fira Code",
   fontSize: "16px",
-  margin: "20px 10px",
+  margin: "10px 10px",
 };
 
 export const AddStudent = () => {
@@ -744,7 +728,7 @@ export const TakeAttendance = () => {
   const Style = {
     padding: "10px 30px",
     color: "white",
-    backgroundColor: "gray",
+    backgroundColor: "#303030",
     fontFamily: "Fira Code",
     border: "2px solid #504747",
     borderRadius: "10px",
@@ -780,24 +764,6 @@ export const TakeAttendance = () => {
             </Link>
           );
         })}
-        {/* <button style={Style} value={"4ee0c505-5957-4970-9015-dab2f73f3f05"}>
-          Automata And Comipler Design
-        </button>
-        <button style={Style} value={"8725d84a-c701-4043-a510-2eacc06bf26f"}>
-          Computer Networks
-        </button>
-        <button style={Style} value={"8fbe3863-fb23-47da-b681-1e20cfe9dd69"}>
-          Database Management System
-        </button>
-        <button style={Style} value={"17fc2b7d-ab2b-4d2b-a144-8797de8a1093"}>
-          Artificial Inteligence And Machine Learning
-        </button>
-        <button style={Style} value={"acd8f161-169b-4acd-bb5a-aee0cc94798f"}>
-          Research Methodology and Intellectual Property
-        </button>
-        <button style={Style} value={"a0295581-b6f6-4f73-b3e1-287115e0ce00"}>
-          Environmental Studies
-        </button> */}
       </div>
     </div>
   );
@@ -876,39 +842,28 @@ export const Attendance = () => {
           }}
         >
           <h1 style={{ fontFamily: "Fira Code", margin: "25px 10px" }}>
-            Student List For Attendance
+            Student List For Attendence
           </h1>
-          <table border={"1px solid gray"}>
+          <table
+            border={"1px solid #303030"}
+            style={{ borderCollapse: "collapse" }}
+          >
             <tr style={{ fontFamily: "Fira Code" }}>
-              <th>Name</th>
-              <th>USN</th>
-              <th>COURSE</th>
-              <th>Details</th>
+              <th className="tex">Name</th>
+              <th className="tex">USN</th>
+              <th className="tex">COURSE</th>
+              <th className="tex">Details</th>
             </tr>
             {Data.map((user) => {
               return (
-                <tr
-                  style={{
-                    fontFamily: "Fira Code",
-                    textAlign: "center",
-                    cursor: "pointer",
-                  }}
-                >
-                  <td style={{ padding: "8px 20px" }}>{user.student_name}</td>
-                  <td style={{ padding: "8px 20px" }}>{user.usn}</td>
-                  <td style={{ padding: "8px 30px" }}>{user.course}</td>
+                <tr className="lists">
+                  <td className="lists">{user.student_name}</td>
+                  <td className="lists">{user.usn}</td>
+                  <td className="lists">{user.course}</td>
                   <td>
                     <button
                       id="attend"
-                      style={{
-                        padding: "5px 10px",
-                        fontFamily: "Fira Code",
-                        margin: "5px 10px",
-                        backgroundColor: "green",
-                        border: "none",
-                        borderRadius: "10px",
-                        color: "white",
-                      }}
+                      className="Gb"
                       value={`${user.student_id} present`}
                       onClick={StateUpdater}
                     >
@@ -916,14 +871,7 @@ export const Attendance = () => {
                     </button>
                     <button
                       id="attend"
-                      style={{
-                        padding: "5px 10px",
-                        fontFamily: "Fira Code",
-                        margin: "5px 10px",
-                        backgroundColor: "red",
-                        border: "none",
-                        borderRadius: "10px",
-                      }}
+                      className="Rb"
                       value={`${user.student_id} absent`}
                       onClick={StateUpdater}
                     >
@@ -1011,7 +959,7 @@ export const UpdateDetails = () => {
         />
         <p
           style={{
-            color: "gray",
+            color: "#303030",
             fontSize: "12px",
             fontFamily: "Fira Code",
             padding: "5px",
@@ -1022,7 +970,8 @@ export const UpdateDetails = () => {
         <button
           style={{
             padding: "8px 20px",
-            backgroundColor: "gray",
+            backgroundColor: "#303030",
+            fontFamily: "Fira Code",
             color: "white",
             border: "none",
             borderRadius: "10px",
@@ -1050,7 +999,9 @@ export const UpdateDetails = () => {
                         flexDirection: "column",
                         alignItems: "center",
                         justifyContent: "center",
-                        border: "2px solid gray",
+                        border: "2px solid #303030",
+                        padding: "5px 10px",
+                        borderRadius: "10px",
                       }}
                     >
                       <p
@@ -1115,11 +1066,11 @@ export const UpdateDetails = () => {
 let Change = [];
 
 const GETSTUDENTSCOND = "/getstud";
-const UPDATESTUDENT = '/updatestudent'
+const UPDATESTUDENT = "/updatestudent";
 
 export const StudentDetails = () => {
   const { id } = useParams();
-  const {user, setUser} = useContext(userAuth)
+  const { user, setUser } = useContext(userAuth);
   const username = useRef(null);
   const course = useRef(null);
   const usn = useRef(null);
@@ -1162,26 +1113,24 @@ export const StudentDetails = () => {
     console.log(Object.keys(user));
 
     if (Object.keys(user).length > 0) {
-       (async () => {
-         try {
-           const response = await axios.put(UPDATESTUDENT, {
-             data: {
-               array: Change,
-               id: id,
-             },
-           });
-           console.log(response?.data);
-           Change = [];
-         } catch (error) {
-           console.error(error);
-         }
+      (async () => {
+        try {
+          const response = await axios.put(UPDATESTUDENT, {
+            data: {
+              array: Change,
+              id: id,
+            },
+          });
+          console.log(response?.data);
+          Change = [];
+        } catch (error) {
+          console.error(error);
+        }
       })();
       navigate("/Get Student List");
     } else {
-      alert("Please Login!!")
+      alert("Please Login!!");
     }
-   
-
   };
 
   useEffect(() => {
@@ -1218,7 +1167,7 @@ export const StudentDetails = () => {
         return (
           <div>
             <h1 style={{ fontFamily: "Fira Code" }}>Student Details</h1>
-            <table border={"gray"}>
+            <table border={"#303030"} style={{ borderCollapse: "collapse" }}>
               <tr>
                 <td style={{ padding: "10px 20px", fontFamily: "Fira Code" }}>
                   Student Name
@@ -1277,8 +1226,8 @@ export const StudentDetails = () => {
       })}
 
       <div>
-        <h4 style={{ fontFamily: "Fira Code" }}>
-          Fill The Only Boxes You Need To Update
+        <h4 style={{ fontFamily: "Fira Code", color: "red" }}>
+          ! Fill The Only Boxes You Need To Update !
         </h4>
         <form
           style={{
