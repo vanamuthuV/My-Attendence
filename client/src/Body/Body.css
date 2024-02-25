@@ -37,6 +37,11 @@
   font-family: "Fira Code";
 }
 
+.lists:hover {
+  border: 1px solid #e3232b;
+  background-color: white;
+}
+
 .Gb {
   padding: 5px 10px;
   font-family: "Fira Code";
@@ -71,10 +76,10 @@
 
 .inL {
   width: 300px;
-  padding: 6px 16px;
+  padding: 10px 16px;
   border: 2px solid black;
   border-radius: 10px;
-  font-size: 16px;
+  font-size: 18px;
   margin-top: 20px;
   margin-right: 10px;
   margin-left: 10px;

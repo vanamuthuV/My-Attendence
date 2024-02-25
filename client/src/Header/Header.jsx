@@ -10,17 +10,16 @@ import { Link } from "react-router-dom";
 import userAuth from "../../context/context";
 
 export const ButtonAppBar = () => {
-
-  const {user, setUser} = React.useContext(userAuth)
+  const { user, setUser } = React.useContext(userAuth);
   console.log(user);
-  
+
   const LogoutHandler = () => {
-    setUser({})
-  }
+    setUser({});
+  };
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
+      <AppBar sx={{ backgroundColor: "#E3242B" }} position="static">
         <Toolbar
           sx={{
             display: "flex",
@@ -49,8 +48,14 @@ export const ButtonAppBar = () => {
               </Button>
             </Link>
           ) : (
-              <div style={{
-                display: "flex", flexDirection: "row", alignItems: "center", justifyContent : "center"}}>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
               <Button
                 color="inherit"
                 sx={{ fontFamily: "Fira Code", color: "white" }}
@@ -59,8 +64,8 @@ export const ButtonAppBar = () => {
               </Button>
               <Button
                 color="inherit"
-                  sx={{ fontFamily: "Fira Code", color: "white" }}
-                  onClick={LogoutHandler}
+                sx={{ fontFamily: "Fira Code", color: "white" }}
+                onClick={LogoutHandler}
               >
                 Logout
               </Button>

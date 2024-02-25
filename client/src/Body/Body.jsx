@@ -8,6 +8,9 @@ import userAuth from "../../context/context";
 import { useNavigate, redirect } from "react-router-dom";
 import SearchIcon from "@mui/icons-material/Search";
 import "./Body.css";
+import Button from "@mui/material/Button";
+import Snackbar from "@mui/material/Snackbar";
+import Alert from "@mui/material/Alert";
 
 const Points = ["Get Student List"];
 
@@ -42,9 +45,8 @@ export const Body = () => {
                   padding: "10px 20px",
                   cursor: "pointer",
                   fontSize: "20px",
-                  fontFamily: "Fira Code",
-                  backgroundColor: "#303030",
-                  border: "1px solid black",
+                  backgroundColor: "#E3232B",
+                  border: "none",
                   color: "white",
                   borderRadius: "10px",
                 }}
@@ -73,8 +75,8 @@ export const Body = () => {
                 cursor: "pointer",
                 fontSize: "20px",
                 fontFamily: "Fira Code",
-                backgroundColor: "#303030",
-                border: "1px solid black",
+                backgroundColor: "#E3232B",
+                border: "none",
                 color: "white",
                 margin: "15px 0px",
                 borderRadius: "10px",
@@ -92,8 +94,8 @@ export const Body = () => {
                 cursor: "pointer",
                 fontSize: "20px",
                 fontFamily: "Fira Code",
-                backgroundColor: "#303030",
-                border: "1px solid black",
+                backgroundColor: "#E3232B",
+                border: "none",
                 color: "white",
                 margin: "15px 0px",
                 borderRadius: "10px",
@@ -111,8 +113,8 @@ export const Body = () => {
                 cursor: "pointer",
                 fontSize: "20px",
                 fontFamily: "Fira Code",
-                backgroundColor: "#303030",
-                border: "1px solid black",
+                backgroundColor: "#E3232B",
+                border: "none",
                 color: "white",
                 margin: "15px 0px",
                 borderRadius: "10px",
@@ -728,9 +730,9 @@ export const TakeAttendance = () => {
   const Style = {
     padding: "10px 30px",
     color: "white",
-    backgroundColor: "#303030",
+    backgroundColor: "#E3232B",
     fontFamily: "Fira Code",
-    border: "2px solid #504747",
+    border: "none",
     borderRadius: "10px",
     cursor: "pointer",
     margin: "15px 10px",
