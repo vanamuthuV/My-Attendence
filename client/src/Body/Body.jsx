@@ -696,33 +696,33 @@ const TAKE_ATTENDANCE = "/takeattendance";
 
 const Subjects = [
   {
-    subject: " Automata And Comipler Design",
-    id: "4ee0c505-5957-4970-9015-dab2f73f3f05",
+    subject: " Automata And Comipler Design (21CS51)",
+    id: "3cb7184f-aa4d-4890-a257-74b8b6780f60",
   },
 
   {
-    subject: "Computer Networks",
-    id: "8725d84a-c701-4043-a510-2eacc06bf26f",
+    subject: "Computer Networks (21CS52)",
+    id: "6c57119b-e0f1-46f2-a90c-be8a880ed53f",
   },
 
   {
-    subject: "Database Management System",
-    id: "8fbe3863-fb23-47da-b681-1e20cfe9dd69",
+    subject: "Database Management System (21CS53)",
+    id: "edde2803-5aef-4199-ba68-34083094e1fa",
   },
 
   {
-    subject: "Artificial Intelligence And Machine Learning",
-    id: "17fc2b7d-ab2b-4d2b-a144-8797de8a1093",
+    subject: "Artificial Intelligence And Machine Learning (21CS54)",
+    id: "755d57b5-d8b9-4584-91e4-6f57fbd43663",
   },
 
   {
-    subject: "Research Methodology and Intellectual Property",
-    id: "acd8f161-169b-4acd-bb5a-aee0cc94798f",
+    subject: "Research Methodology and Intellectual Property (21CS56)",
+    id: "f88cfb83-4639-4a3f-ba2e-0f53a5566eb1",
   },
 
   {
-    subject: "Environmental Studies",
-    id: "a0295581-b6f6-4f73-b3e1-287115e0ce00",
+    subject: "Environmental Studies (21CS57)",
+    id: "46d64394-2845-42c6-a697-994c1d2a4fe9",
   },
 ];
 

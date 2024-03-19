@@ -1,0 +1,12 @@
+
+
+
+
+*) Inserting Values To Subject Table:
+
+insert into subjects values ('Automata Theory And Comipler Design', '21CS51'),
+('Computer Networks', '21CS52'),
+('Database Management System', '21CS53'),
+('Artificial Intelligences And Machine Learning', '21CS54'),
+('Research Methodoly And Intellectual Properties', '21CS56'),
+('Environmental Students', '21CS57');
