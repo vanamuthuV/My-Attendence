@@ -2,7 +2,6 @@ import pg from "pg"
 import dotenv from "dotenv"
 import pgPromise from "pg-promise"
 import fs from "fs"
-const certificate =  "./ca.pem"
 
 dotenv.config()
 
@@ -26,7 +25,7 @@ const newpool = {
 const poolconfig = {
   connectionString: process.env.DATABASE_URL,
   ssl: {
-    ca: fs.readFileSync(certificate).toString(),
+    rejectUnauthorized: false, // Allow self-signed certificates
   },
 };
   
