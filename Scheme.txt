@@ -1,0 +1,32 @@
+CREATE TABLE staffadmin (
+	name text,
+	admin_username text,
+	password text
+	staff_serial uuid PRIMARY KEY uuid_generate_v4()
+);
+
+CREATE TABLE (	
+	student_name varchar(30),
+	course text,
+	usn varchar(20),
+	gender char(1),
+	student_section char(1),
+	student_year char(1),
+	student_id uuid PRIMARY KEY uuid_generate_v4()
+);
+
+CREATE TABLE subjects (
+	sunject_name varchar(50),
+	subject_code varchar(30),
+	suject_id uuid PRIMARY KEY uuid_generate_v4()
+);
+
+CREATE TABLE attendance(
+	student_id uuid,
+	subject_id uuid,
+	status varchar(8),
+	attendance_time timestamp,
+	attendance_id uuid PRIMARY KEY uuid_generate_v4(),
+	FOREIGN KEY(student_id) REFERENCES students(student_id) ON DELETE CASCADE,
+	FOREIGN KEY(subject_id) REFERENCES subjects(suject_id) ON DELETE CASCADE,
+);
