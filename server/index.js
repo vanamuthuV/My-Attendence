@@ -8,9 +8,12 @@ import pgPromise from "pg-promise";
 
 const app = express();
 
+// const BASE_URL = "http://localhost:5173";
+const BASE_URL = "https://my-attendence.vercel.app/";
+
 app.use(
   cors({
-    origin: "http://localhost:5173", // Replace with your frontend URL
+    origin: BASE_URL, // Replace with your frontend URL
     credentials: true, // Include credentials if needed
   })
 );
