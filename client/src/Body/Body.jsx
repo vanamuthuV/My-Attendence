@@ -12,7 +12,7 @@ import Button from "@mui/material/Button";
 import Snackbar from "@mui/material/Snackbar";
 import Alert from "@mui/material/Alert";
 
-const Points = ["Get Student List"];
+const Points = ["GetStudentList"];
 
 export const Body = () => {
   const { user, setUser } = useContext(userAuth);
