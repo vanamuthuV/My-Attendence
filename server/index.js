@@ -1,3 +1,4 @@
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 import express, { query } from "express";
 import dotenv from "dotenv";
 import pool from "./db.js";
@@ -6,7 +7,14 @@ import bodyParser from "body-parser";
 import pgPromise from "pg-promise";
 
 const app = express();
-app.use(cors());
+
+app.use(
+  cors({
+    origin: "http://localhost:5173", // Replace with your frontend URL
+    credentials: true, // Include credentials if needed
+  })
+);
+
 app.use(bodyParser.json());
 
 app.get("/getstudents", async (req, res) => {
@@ -77,9 +85,9 @@ app.post("/login", async (req, res) => {
     if (user.rows.length === 0)
       return res
         .status(200)
-        .json({ data: "No user found or recheck your credentials" });
+        .json({ message: "No user found or recheck your credentials or contact administration" });
 
-    res.status(200).json({ data: user.rows });
+    res.status(200).json({ data: user.rows, message : "Login Success" });
   } catch (error) {
     res.status(400).json({ data: "Unable to communicate with server" + error });
   }
@@ -165,44 +173,47 @@ app.post("/getstudentcond", async (req, res) => {
     const users = await pool.query("select * from students where usn = $1", [
       usn,
     ]);
-      res.status(200).json({ data: users.rows });
+    res.status(200).json({ data: users.rows });
   } catch (error) {
-    res.status(200).json({data : error})
+    res.status(200).json({ data: error });
   }
 });
 
 app.post("/getstud", async (req, res) => {
   try {
-    const user = await pool.query('select * from students where student_id = $1', [req?.body?.data?.id])
-    res.status(200).json({data : user.rows})
+    const user = await pool.query(
+      "select * from students where student_id = $1",
+      [req?.body?.data?.id]
+    );
+    res.status(200).json({ data: user.rows });
   } catch (error) {
-    res.status(400).json({data : error})
+    res.status(400).json({ data: error });
   }
 });
 
 app.put("/updatestudent", async (req, res) => {
   console.log(req.body);
 
-  const arr = req?.body?.data?.array
+  const arr = req?.body?.data?.array;
 
   const Concatenator = () => {
-    let str = arr[0]
+    let str = arr[0];
 
-   for (let i = 1; i < arr.length; i++) {
-     str += ", " + arr[i] 
+    for (let i = 1; i < arr.length; i++) {
+      str += ", " + arr[i];
     }
-    
-    return str
-  }
+
+    return str;
+  };
 
   const query = `
     update students set ${Concatenator()} where student_id = $1
-  `
+  `;
 
   console.log(query);
 
   try {
-    await pool.query(query, [req?.body?.data?.id])
+    await pool.query(query, [req?.body?.data?.id]);
     const users = await pool.query("select * from students");
     res.status(200).json({ data: users.rows });
   } catch (error) {

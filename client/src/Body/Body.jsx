@@ -170,7 +170,7 @@ export const Students = () => {
         setData(response?.data?.data);
         setLoading(false);
       } catch (error) {
-        console.error(error);
+        console.error(error.message);
       }
     })();
   }, []);
@@ -432,6 +432,9 @@ export const Login = () => {
   const [errorMessage, setErrorMessage] = useState(null);
   const { user, setUser } = useContext(userAuth);
 
+  const [snack, setSnack] = useState(false)
+  const [snackMessage, setSnackMessage] = useState( '')
+
   const navigate = useNavigate();
 
   setTimeout(() => {
@@ -448,10 +451,14 @@ export const Login = () => {
             password: password.current.value,
           },
         });
-        console.log(response?.data?.data);
+        console.log(response?.data?.message);
+        setSnackMessage(response?.data?.message);
+        setSnack(true)
         if (Array.isArray(response?.data?.data)) {
           setUser(response?.data?.data);
-          navigate("/");
+          setTimeout(() => {
+            navigate("/");
+          }, 5000)
         } else {
           setErrorMessage(response?.data?.data);
           setError(true);
@@ -462,6 +469,12 @@ export const Login = () => {
     })();
   };
 
+  snack && (() => {
+  setTimeout(() => {
+      setSnack(false)
+    }, 4000)
+  })
+  
   return (
     <div
       style={{
@@ -469,6 +482,7 @@ export const Login = () => {
         flexDirection: "row",
         alignItems: "center",
         justifyContent: "center",
+        position: "relative",
       }}
     >
       <div className="loginDiv">
@@ -534,6 +548,40 @@ export const Login = () => {
         </form>
         {error && <p>{errorMessage}</p>}
       </div>
+      {snack && (
+        <div
+          style={{
+            borderColor: "gray",
+            borderWidth: "2px",
+            borderStyle: "solid", // Ensure the border is visible
+            height: "30px",
+            position: "absolute",
+            left: 0,
+            bottom: "10px",
+            backgroundColor: "#fff", // Optional: background color for better visibility
+            color: "#000", // Text color
+            display: "flex", // Flexbox for centering text
+            alignItems: "center", // Center text verticallly
+            padding: "10px", // Optional: padding for spacing inside the snack bar
+            boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)", // Optional: shadow for better visibility
+            borderRadius: "10px",
+          }}
+        >
+          <div style={{ position: "relative", width: "100%", height: "100%", paddingRight : "50px" }}>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              height="24px"
+              viewBox="0 -960 960 960"
+              width="24px"
+              style={{ position: "absolute", top: 0, right: 0, marginLeft : "40px" }}
+              onClick={() => setSnack(false)}
+            >
+              <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" />
+            </svg>
+            {snackMessage}
+          </div>
+        </div>
+      )}
     </div>
   );
 };
@@ -697,32 +745,32 @@ const TAKE_ATTENDANCE = "/takeattendance";
 const Subjects = [
   {
     subject: " Automata And Comipler Design (21CS51)",
-    id: "3cb7184f-aa4d-4890-a257-74b8b6780f60",
+    id: "5a493afe-a77b-4dc9-bc53-fceab59b0ca5",
   },
 
   {
     subject: "Computer Networks (21CS52)",
-    id: "6c57119b-e0f1-46f2-a90c-be8a880ed53f",
+    id: "9b467e62-ec40-4ccc-a558-5a43a3452716",
   },
 
   {
     subject: "Database Management System (21CS53)",
-    id: "edde2803-5aef-4199-ba68-34083094e1fa",
+    id: "0935d1ae-6137-4a7f-9b41-1476d73c205f",
   },
 
   {
     subject: "Artificial Intelligence And Machine Learning (21CS54)",
-    id: "755d57b5-d8b9-4584-91e4-6f57fbd43663",
+    id: "a5b9b599-4091-4789-a110-3b49029cab8b",
   },
 
   {
     subject: "Research Methodology and Intellectual Property (21CS56)",
-    id: "f88cfb83-4639-4a3f-ba2e-0f53a5566eb1",
+    id: "2f02d777-4f7f-457f-8fb9-7f78352a95a4",
   },
 
   {
     subject: "Environmental Studies (21CS57)",
-    id: "46d64394-2845-42c6-a697-994c1d2a4fe9",
+    id: "482723bb-aedb-4b85-9328-b169fc6b387d",
   },
 ];
 
