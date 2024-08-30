@@ -9,7 +9,7 @@ import pgPromise from "pg-promise";
 const app = express();
 
 // const BASE_URL = "http://localhost:5173";
-const BASE_URL = "https://my-attendence.vercel.app/";
+const BASE_URL = "https://my-attendence.vercel.app";
 
 const corsOptions = {
   origin: BASE_URL, // Allow requests from this origin
