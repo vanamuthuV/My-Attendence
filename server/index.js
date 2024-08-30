@@ -17,6 +17,33 @@ app.use(
 
 app.use(bodyParser.json());
 
+app.get("/", (req, res) => {
+  res.send(`
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Simple HTML Response</title>
+      <style>
+        body {
+          font-family: Arial, sans-serif;
+          margin: 20px;
+          padding: 20px;
+        }
+        p {
+          color: #333;
+          font-size: 18px;
+        }
+      </style>
+    </head>
+    <body>
+      <p>I am Attendace Server !</p>
+    </body>
+    </html>
+  `);
+});
+
 app.get("/getstudents", async (req, res) => {
   console.log("Ho");
   try {
