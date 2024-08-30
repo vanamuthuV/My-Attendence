@@ -23,13 +23,13 @@ function App() {
         <Routes>
           <Route path="/" element={<Body />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/Get Student List" element={<Students />} />
+          <Route path="/GetStudentList" element={<Students />} />
           <Route
-            path="/Get Student List/:student_id"
+            path="/GetStudentList/:student_id"
             element={<StudentHistory />}
           />
           <Route
-            path="/Get Student List/:student_id/:date"
+            path="/GetStudentList/:student_id/:date"
             element={<IndiviualClass />}
           />
           <Route path="/addstudent" element={<AddStudent />} />

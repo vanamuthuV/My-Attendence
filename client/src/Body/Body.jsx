@@ -219,7 +219,7 @@ export const Students = () => {
                     }}
                     className="detail"
                   >
-                    <Link to={`/Get Student List/${users.student_id}`}>
+                    <Link to={`/GetStudentList/${users.student_id}`}>
                       <button className="DetailButton">Details</button>
                     </Link>
                   </td>
@@ -319,7 +319,7 @@ export const StudentHistory = () => {
           {Data.map((date) => {
             return (
               <Link
-                to={`/Get Student List/:${date.student_id}/${format(
+                to={`/GetStudentList/:${date.student_id}/${format(
                   date.attendance_time,
                   "yyyy-MM-d"
                 )}`}
@@ -1177,7 +1177,7 @@ export const StudentDetails = () => {
           console.error(error);
         }
       })();
-      navigate("/Get Student List");
+      navigate("/GetStudentList");
     } else {
       alert("Please Login!!");
     }
