@@ -13,6 +13,7 @@ import { TakeAttendance } from './Body/Body'
 import { Attendance } from './Body/Body'
 import { UpdateDetails } from './Body/Body'
 import { StudentDetails } from './Body/Body'
+import Footer from './footer'
 
 function App() {
 
@@ -38,6 +39,7 @@ function App() {
           <Route path="/updatedetails" element={<UpdateDetails />} />
           <Route path="/updatedetails/:id" element={<StudentDetails />} />
         </Routes>
+        <Footer />
       </BrowserRouter>
     </AuthProvider>
   );

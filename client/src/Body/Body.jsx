@@ -11,6 +11,7 @@ import "./Body.css";
 import Button from "@mui/material/Button";
 import Snackbar from "@mui/material/Snackbar";
 import Alert from "@mui/material/Alert";
+import Card from "../card";
 
 const Points = ["GetStudentList"];
 
@@ -21,111 +22,122 @@ export const Body = () => {
     <div
       style={{
         display: "flex",
-        flexDirection: "column",
+        flexDirection: "row",
         alignItems: "center",
         justifyContent: "center",
-        height: "400px",
+        flexWrap: "wrap",
       }}
     >
-      <ul
+
+      <div
         style={{
-          listStyle: "none",
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
-          padding: 0,
+          height: "calc(100vh - 210px)",
         }}
       >
-        {Points.map((point) => {
-          return (
-            <Link to={`/${point}`}>
+        <ul
+          style={{
+            listStyle: "none",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+            padding: 0,
+          }}
+        >
+          {Points.map((point) => {
+            return (
+              <Link to={`/${point}`}>
+                <button
+                  style={{
+                    padding: "10px 20px",
+                    cursor: "pointer",
+                    fontSize: "20px",
+                    backgroundColor: "#E3232B",
+                    border: "none",
+                    color: "white",
+                    borderRadius: "10px",
+                  }}
+                  className="lists"
+                >
+                  See Attendance
+                </button>
+              </Link>
+            );
+          })}
+        </ul>
+
+        {Object.keys(user).length > 0 && (
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <Link to={"/addstudent"}>
               <button
                 style={{
                   padding: "10px 20px",
                   cursor: "pointer",
                   fontSize: "20px",
+                  fontFamily: "Fira Code",
                   backgroundColor: "#E3232B",
                   border: "none",
                   color: "white",
+                  margin: "15px 0px",
                   borderRadius: "10px",
                 }}
                 className="lists"
               >
-                See Attendance
+                Add Student
               </button>
             </Link>
-          );
-        })}
-      </ul>
 
-      {Object.keys(user).length > 0 && (
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
-          <Link to={"/addstudent"}>
-            <button
-              style={{
-                padding: "10px 20px",
-                cursor: "pointer",
-                fontSize: "20px",
-                fontFamily: "Fira Code",
-                backgroundColor: "#E3232B",
-                border: "none",
-                color: "white",
-                margin: "15px 0px",
-                borderRadius: "10px",
-              }}
-              className="lists"
-            >
-              Add Student
-            </button>
-          </Link>
+            <Link to={"/takeattendance"}>
+              <button
+                style={{
+                  padding: "10px 20px",
+                  cursor: "pointer",
+                  fontSize: "20px",
+                  fontFamily: "Fira Code",
+                  backgroundColor: "#E3232B",
+                  border: "none",
+                  color: "white",
+                  margin: "15px 0px",
+                  borderRadius: "10px",
+                }}
+                className="lists"
+              >
+                Take Attendance
+              </button>
+            </Link>
 
-          <Link to={"/takeattendance"}>
-            <button
-              style={{
-                padding: "10px 20px",
-                cursor: "pointer",
-                fontSize: "20px",
-                fontFamily: "Fira Code",
-                backgroundColor: "#E3232B",
-                border: "none",
-                color: "white",
-                margin: "15px 0px",
-                borderRadius: "10px",
-              }}
-              className="lists"
-            >
-              Take Attendance
-            </button>
-          </Link>
-
-          <Link to={"/updatedetails"}>
-            <button
-              style={{
-                padding: "10px 20px",
-                cursor: "pointer",
-                fontSize: "20px",
-                fontFamily: "Fira Code",
-                backgroundColor: "#E3232B",
-                border: "none",
-                color: "white",
-                margin: "15px 0px",
-                borderRadius: "10px",
-              }}
-              className="lists"
-            >
-              Update Student Details
-            </button>
-          </Link>
-        </div>
-      )}
+            <Link to={"/updatedetails"}>
+              <button
+                style={{
+                  padding: "10px 20px",
+                  cursor: "pointer",
+                  fontSize: "20px",
+                  fontFamily: "Fira Code",
+                  backgroundColor: "#E3232B",
+                  border: "none",
+                  color: "white",
+                  margin: "15px 0px",
+                  borderRadius: "10px",
+                }}
+                className="lists"
+              >
+                Update Student Details
+              </button>
+            </Link>
+          </div>
+        )}
+      </div>
     </div>
   );
 };
@@ -432,8 +444,8 @@ export const Login = () => {
   const [errorMessage, setErrorMessage] = useState(null);
   const { user, setUser } = useContext(userAuth);
 
-  const [snack, setSnack] = useState(false)
-  const [snackMessage, setSnackMessage] = useState( '')
+  const [snack, setSnack] = useState(false);
+  const [snackMessage, setSnackMessage] = useState("");
 
   const navigate = useNavigate();
 
@@ -453,12 +465,12 @@ export const Login = () => {
         });
         console.log(response?.data?.message);
         setSnackMessage(response?.data?.message);
-        setSnack(true)
+        setSnack(true);
         if (Array.isArray(response?.data?.data)) {
           setUser(response?.data?.data);
           setTimeout(() => {
             navigate("/");
-          }, 5000)
+          }, 5000);
         } else {
           setErrorMessage(response?.data?.data);
           setError(true);
@@ -469,12 +481,13 @@ export const Login = () => {
     })();
   };
 
-  snack && (() => {
-  setTimeout(() => {
-      setSnack(false)
-    }, 4000)
-  })
-  
+  snack &&
+    (() => {
+      setTimeout(() => {
+        setSnack(false);
+      }, 4000);
+    });
+
   return (
     <div
       style={{
@@ -486,6 +499,7 @@ export const Login = () => {
       }}
     >
       <div className="loginDiv">
+        <Card />
         <h1 style={{ fontFamily: "Fira Code" }}>Login Page</h1>
         <form
           onSubmit={submitHandler}
@@ -567,13 +581,25 @@ export const Login = () => {
             borderRadius: "10px",
           }}
         >
-          <div style={{ position: "relative", width: "100%", height: "100%", paddingRight : "50px" }}>
+          <div
+            style={{
+              position: "relative",
+              width: "100%",
+              height: "100%",
+              paddingRight: "50px",
+            }}
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               height="24px"
               viewBox="0 -960 960 960"
               width="24px"
-              style={{ position: "absolute", top: 0, right: 0, marginLeft : "40px" }}
+              style={{
+                position: "absolute",
+                top: 0,
+                right: 0,
+                marginLeft: "40px",
+              }}
               onClick={() => setSnack(false)}
             >
               <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" />
