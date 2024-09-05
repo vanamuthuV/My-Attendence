@@ -470,7 +470,7 @@ export const Login = () => {
           setUser(response?.data?.data);
           setTimeout(() => {
             navigate("/");
-          }, 5000);
+          }, 2500);
         } else {
           setErrorMessage(response?.data?.data);
           setError(true);
